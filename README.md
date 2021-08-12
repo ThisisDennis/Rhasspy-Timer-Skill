@@ -1,4 +1,4 @@
-# Rhasspy-Timer-Skill
+# Rhasspy-Timer-Skill (Rhasspy-Hermes-App)
 Simple Stupid (german) Timer Skill
 Feel free to add the TimerObject to a list, so you can set up multiple timers. At the moment there is only one possible.
 
