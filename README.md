@@ -10,6 +10,7 @@ Feel free to add the TimerObject to a list, so you can set up multiple timers. A
 ## Example Sentences
 
 [Timerjob:start]
+
 (stell|stelle|starte) einen timer auf (0..59) {seconds} Sekunden
 
 (stell|stelle|starte) einen timer auf (0..59) {minutes} (Minuten|Minute)
@@ -23,9 +24,11 @@ Feel free to add the TimerObject to a list, so you can set up multiple timers. A
 (stell|stelle|starte) einen timer auf (0..59) {minutes} (Minuten|Minute) und (0..59) {seconds} Sekunden
 
 [Timerjob:remaining]
+
 Wie lange (läuft|geht) der Timer noch
 
 Wie viel Zeit verbleibt [beim timer] noch [beim timer]
 
 [Timerjob:stop]
+
 (Beende|Stoppe|Lösche) den Timer
