@@ -115,11 +115,11 @@ class TimerJob(object):
         m, s = divmod(timeDiff, 60)
         h, m = divmod(m, 60)
         if(h > 0):
-            sentence = "Der Teimer noch " + str(int(h)) + " Stunden, " + str(int(m)) + " Minuten und " + str(int(s)) + " Sekunden "
+            sentence = "Der Teimer läuft noch " + str(int(h)) + " Stunden, " + str(int(m)) + " Minuten und " + str(int(s)) + " Sekunden "
         elif(m > 0):
-            sentence = "Der Teimer noch " + str(int(m)) + " Minuten und " + str(int(s)) + " Sekunden "
+            sentence = "Der Teimer läuft noch " + str(int(m)) + " Minuten und " + str(int(s)) + " Sekunden "
         elif(s > 0):
-            sentence = "Der Teimer noch " + str(int(s)) + " Sekunden "
+            sentence = "Der Teimer läuft noch " + str(int(s)) + " Sekunden "
         return sentence
 
 @app.on_intent("Timerjob:start")
