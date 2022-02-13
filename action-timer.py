@@ -101,10 +101,12 @@ class TimerJob(object):
         timer.start()
     
     def stop(self):
+        global t
         self.timer.cancel()
         self.timer = None
         self.start_time = 0
         self.time_range = 0
+        t = None
         return "Teimer wurde gestoppt"
 
     def timeRemaining(self):
