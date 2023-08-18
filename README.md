@@ -8,6 +8,8 @@ Feel free to add the TimerObject to a list, so you can set up multiple timers. A
 `sh logs.sh` to show the logs of the service
 `sudo sh reload.sh` to reload the service, if you changed some code
 
+You may need to install Rhasspy-Hermes-App and paho-mqtt. On Debian Bullseye you might run into an error with the Rhasspy-Hermes-App, it can be fixed by upgrading rhasspy-hermes to at least version 0.6.2.
+
 ## Example Sentences
 
 [Timerjob:start]
