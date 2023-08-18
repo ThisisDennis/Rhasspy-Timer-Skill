@@ -20,6 +20,7 @@ After=multi-user.target
 [Service]
 Type=simple
 ExecStart=/usr/bin/python3 $SCRIPTPATH/action-timer.py
+WorkingDirectory=$SCRIPTPATH
 Restart=on-abort
 
 [Install]
