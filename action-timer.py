@@ -65,8 +65,6 @@ class TimerJob(object):
         
         #print(sentence)
         app.notify(sentence, self.intent.site_id)
-        global t
-        t = None
         self.timer = None
         self.start_time = 0
 
