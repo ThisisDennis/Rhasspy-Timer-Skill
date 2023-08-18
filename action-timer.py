@@ -2,9 +2,12 @@ import threading
 import time
 from rhasspyhermes.nlu import NluIntent
 from rhasspyhermes_app import EndSession, HermesApp
+import paho.mqtt.client as mqtt
 
 app = HermesApp("TimerApp")
 t = None
+soundfile = bytes()
+
 class TimerJob(object):
     answer  = u"Biep biep, dein Teimer ist abgelaufen, Biep biep"
     intent = None
@@ -62,6 +65,8 @@ class TimerJob(object):
         
         #print(sentence)
         app.notify(sentence, self.intent.site_id)
+        global t
+        t = None
         self.timer = None
         self.start_time = 0
 
@@ -69,6 +74,10 @@ class TimerJob(object):
     def notify(self):
         #print(self.answer)
         app.notify(self.answer, self.intent.site_id)
+        self.playSound()
+    
+    def playSound(self):
+        client.publish("hermes/audioServer/" + self.intent.site_id + "/playBytes/activate", soundfile)
  
     def getSeconds(self):
         for slot in self.intent.slots:
@@ -89,9 +98,9 @@ class TimerJob(object):
         return [0, ""]
 
     def start(self):
-        seconds = self.getSeconds()[0]
-        minutes = self.getMinutes()[0]
-        hours   = self.getHours()[0]
+        seconds = int(self.getSeconds()[0])
+        minutes = int(self.getMinutes()[0])
+        hours   = int(self.getHours()[0])
         self.time_range = seconds + minutes * 60 + hours * 3600
         print("start Timer: " + str(self.time_range))
         timer = threading.Timer(self.time_range, self.notify)
@@ -155,5 +164,17 @@ async def timer(intent: NluIntent):
         return EndSession(t.stop())
 
 if __name__ == "__main__":
+    mqtt_broker_host = "192.168.28.43" # base station -- needed to play sound on satellite
+    mqtt_broker_port = 1883
+
+    # MQTT-Client erstellen und verbinden
+    client = mqtt.Client()
+    client.connect(mqtt_broker_host, mqtt_broker_port)
+
+    ## Load soundfile
+    with open("timersound.wav", "rb") as f:
+        soundfile = f.read()
+
     t = None
     app.run()
+
